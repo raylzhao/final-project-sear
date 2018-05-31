@@ -10,15 +10,6 @@ country <- world_happiness_data$Country
 ui <- fluidPage(
   titlePanel("2016 World Happiness Data"),
   
-  sidebarLayout(
-    sidebarPanel(
-      checkboxGroupInput('country', 
-                  'Country',
-                  selected = 'Denmark',
-                  inline = TRUE,
-                  choices = country)
-    ),
-  
   mainPanel(
     tabsetPanel(
       tabPanel('Economy Graph',
@@ -26,6 +17,14 @@ ui <- fluidPage(
                  vs GDP per Capita. You can filter which countries you want to focus
                  on and see the relationship between GDP per Capita and happiness."),
                plotOutput("GDPGraph"),
+               sidebarLayout(
+                 sidebarPanel(
+                   checkboxGroupInput('country', 
+                                      'Country',
+                                      selected = 'Denmark',
+                                      inline = TRUE,
+                                      choices = country)
+                 ),
                p(em("Commonly, it is said that money does not buy happiness. We are 
                     looking further into the relationship between a country's happiness
                     score and a country’s Gross Domestic Product (GDP) per Capita. 
@@ -35,12 +34,14 @@ ui <- fluidPage(
                     and wealth in a country. Looking at the graph, we can see a general trend
                     of positive correlation between GDP per Capita and happiness score.
                     We know that countries that are more economically stable have people
-                    with higher happiness levels.")))
+                    with higher happiness levels."))
+          )
     
       
       )
   )
-))
+  )
+)
 
 
 
