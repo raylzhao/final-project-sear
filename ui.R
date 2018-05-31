@@ -18,32 +18,29 @@ shinyUI(fluidPage(
                                      "5.00 < Score <= 6.00" = "2",
                                      "4.00 < Score <= 5.00" = "1",
                                      "Score <= 4.00" = "0"
-                                   )
-                       ),
+                                   )),
                        h5("This tab will show the Happiness ranking based one happiness score inside the selected 
                          boundary with a decreasing order."),
                        plotOutput("plots"),
                        h5("Here is a bar plot for the number of countries and where region they belongs to. More detailed
                          data is provided through the table under the plot."),
-                       tableOutput("table")
-                       ),
+                       tableOutput("table")),
               tabPanel("Advance Analysis",
                        selectInput("Ranking", label =  h4("Select Ranking:"),
                                    c("Top 20" = "20",
                                      "Top 50" = "50",
                                      "Top 100" = "100",
                                      "Full list" = "157"
-                                   )
-                       ),
+                                   )),
                        plotOutput("table_3"),
                        tableOutput("table_2"),
                        
                        h4("Analysis:"),
-                       h5(textOutput("full_report"))
-            ),
-            tabPanel("Conclusion",
+                       h5(textOutput("full_report"))),
+              tabPanel("Conclusion",
                      h5(textOutput("finally")))
+              )
       )
     )
   )
-)))
+))
