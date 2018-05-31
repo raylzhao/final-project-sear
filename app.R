@@ -44,47 +44,47 @@ colnames(world_map)[colnames(world_map) == "region"] <- "Country"
 
 
 # Define UI for application that draws a histogram
-ui <- navbarPage("What Determines Happiness?",
-                 tabPanel("Freedom and Trust",
-                          p(em("Two other factors that affect the happiness score are 
-                               trust (as measured by a perceived absense of corruption
-                               in government and business) and perceived freedom to make
-                               life decisions. Perceptions of corruption are the average
-                               of binary answers to two questions: 'Is corruption widespread
-                               throughout the government or not?' and 'Is corruption widespread
-                               within businesses or not?'. Freedom to make life choices are the
-                               average of binary answers to the question 'Are you satisfied or
-                               dissatisfied with your freedom to choose what you do with your
-                               life?'.")),
-                          sidebarLayout(
-                            sidebarPanel(
-                              sliderInput('happiness_score', label = "Happiness Score",
-                                          min = happiness_score_range[1],
-                                          max = happiness_score_range[2],
-                                          value = happiness_score_range),
-                              sliderInput('freedom_score', label = "Freedom Score",
-                                          min = freedom_range[1],
-                                          max = freedom_range[2],
-                                          value = freedom_range),
-                              sliderInput('tgc', label = "Trust Government Corruption",
-                                          min = tgc_range[1],
-                                          max = tgc_range[2],
-                                          value = tgc_range),
-                              checkboxGroupInput('government_type', label = "Government Type",
-                                                 choices = c('Democracy', 'Republic', 'Monarchy',
-                                                             'Communism', 'Dictatorship', 'In Transition',
-                                                             'Federation'),
-                                                 selected = c('Democracy', 'Republic', 'Monarchy',
-                                                              'Communism', 'Dictatorship'))
-                            ),
-                            
-                            mainPanel(plotOutput('world_map', hover = 'plot_hover'),
-                                      plotOutput('graph'),
-                                      verbatimTextOutput('info'))
-                            
+ui <- fluidPage(
+  titlePanel("What Determines Happiness?"),
+  tabsetPanel(tabPanel("Freedom and Trust",
+                       p(em("Two other factors that affect the happiness score are 
+                            trust (as measured by a perceived absense of corruption
+                            in government and business) and perceived freedom to make
+                            life decisions. Perceptions of corruption are the average
+                            of binary answers to two questions: 'Is corruption widespread
+                            throughout the government or not?' and 'Is corruption widespread
+                            within businesses or not?'. Freedom to make life choices are the
+                            average of binary answers to the question 'Are you satisfied or
+                            dissatisfied with your freedom to choose what you do with your
+                            life?'.")),
+                       sidebarLayout(
+                         sidebarPanel(
+                           sliderInput('happiness_score', label = "Happiness Score",
+                                       min = happiness_score_range[1],
+                                       max = happiness_score_range[2],
+                                       value = happiness_score_range),
+                           sliderInput('freedom_score', label = "Freedom Score",
+                                       min = freedom_range[1],
+                                       max = freedom_range[2],
+                                       value = freedom_range),
+                           sliderInput('tgc', label = "Trust Government Corruption",
+                                       min = tgc_range[1],
+                                       max = tgc_range[2],
+                                       value = tgc_range),
+                           checkboxGroupInput('government_type', label = "Government Type",
+                                              choices = c('Democracy', 'Republic', 'Monarchy',
+                                                          'Communism', 'Dictatorship', 'In Transition',
+                                                          'Federation'),
+                                              selected = c('Democracy', 'Republic', 'Monarchy',
+                                                           'Communism', 'Dictatorship'))
+                         ),
+                         
+                         mainPanel(plotOutput('world_map', hover = 'plot_hover'),
+                                   plotOutput('graph'),
+                                   verbatimTextOutput('info'))
                           )
                           )
-)
+))
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
