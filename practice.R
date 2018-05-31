@@ -145,12 +145,8 @@ ui <- fluidPage(
                                     selected = c('Democracy', 'Republic', 'Monarchy',
                                                  'Communism', 'Dictatorship'))
                ),
-               
-               mainPanel(plotOutput('world_map', hover = 'plot_hover'),
-                         plotOutput('graph'),
-                         verbatimTextOutput('info'))
-               
-             )
+               plotOutput('world_map'),
+                         plotOutput('graph'))
              ),
     tabPanel('Economy Graph',
              p("This graph plots points of different countries' happiness score
@@ -226,7 +222,7 @@ ui <- fluidPage(
              "", textOutput("analysis"), "", plotOutput("graph2"),"", 
              plotOutput("graph3"), "", textOutput("conclusion")
     )
-    )
+  )
 )
 
 ##############
